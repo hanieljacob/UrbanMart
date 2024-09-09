@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import Card from './Card';
-import './Hero.css';
+import MyCard from './MyCard';
+import { Box, Input, Select, Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@chakra-ui/react';
+import { FaDollarSign } from "react-icons/fa";
 
 export default function Hero() {
   const [products, setProducts] = useState([]);
@@ -48,9 +49,7 @@ export default function Hero() {
     setCurrentCategory(event.target.value);
   }
 
-  function handlePriceChange(event) {
-    const value = Number(event.target.value);
-    document.querySelector('#price').innerHTML = `$${value}`;
+  function handlePriceChange(value) {
     if (debounceTimer) {
       clearTimeout(debounceTimer);
     }
@@ -61,7 +60,6 @@ export default function Hero() {
 
   function handleSearchChange(event) {
     const value = event.target.value;
-    document.querySelector('#text').innerHTML = value;
     if (searchDebounceTimer) {
       clearTimeout(searchDebounceTimer);
     }
@@ -72,32 +70,60 @@ export default function Hero() {
 
   function Filter() {
     return (
-      <div id="filters-container">
-        <select value={currentCategory} onChange={handleCategoryChange}>
-          <option value="category">category</option>
-          <option value="electronics">electronics</option>
-          <option value="jewelery">jewelery</option>
-          <option value="men's clothing">men&apos;s clothing</option>
-          <option value="women's clothing">women&apos;s clothing</option>
-        </select>
-        <div className='price'>
-          <label htmlFor='priceSlider'>Price</label>
-          <input type='range' id='priceSlider' onChange={handlePriceChange} defaultValue={currentPrice} name='priceSlider' min={0} max={1000}></input>
-          <p id="price">{`$${currentPrice}`}</p>
-        </div>
-        <input id="text" type='text' name='search' placeholder='Search for product' defaultValue={searchTerm} onChange={handleSearchChange}></input>
-      </div>
+      <Box
+        id="filters-container"
+        padding="30px"
+        display="flex"
+        justifyContent="space-around"
+        alignItems="center"
+        gap="30px"
+      >
+        <Input
+          id="text"
+          placeholder='Search for a product'
+          defaultValue={searchTerm}
+          onChange={handleSearchChange}
+          size='md'
+          borderRadius='25px'
+          border='1px'
+          borderColor='gray.300'
+          backgroundColor='white'
+          _hover={{ borderColor: 'teal.400' }}
+          _focus={{ borderColor: 'teal.400' }}
+        />
+        <Select value={currentCategory} onChange={handleCategoryChange} backgroundColor='white'>
+          <option value="category">Category</option>
+          <option value="electronics">Electronics</option>
+          <option value="jewelery">Jewelery</option>
+          <option value="men's clothing">Men&apos;s Clothing</option>
+          <option value="women's clothing">Women&apos;s Clothing</option>
+        </Select>
+        <Slider onChange={handlePriceChange} defaultValue={currentPrice} min={0} max={1000}>
+          <SliderTrack>
+            <SliderFilledTrack bg='tomato' />
+          </SliderTrack>
+          <SliderThumb boxSize={6}>
+            <Box color='tomato' as={FaDollarSign} />
+          </SliderThumb>
+        </Slider>
+      </Box>
     );
   }
 
   return (
-    <div>
+    <div style={{backgroundColor: '#F9F9F9'}}>
       <Filter />
-      <div id="heroContainer">
+      <Box
+        id="heroContainer"
+        display="grid"
+        gridTemplateColumns={{ base: '1fr', sm: '1fr 1fr', md: '1fr 1fr 1fr', lg: '1fr 1fr 1fr 1fr' }}
+        gap="4"
+        width="full"
+      >
         {currentProducts.map((product, index) => (
-          <Card key={index} className="card" title={product.title} desc={product.description} image={product.image} price={product.price}/>
+          <MyCard key={index} className="card" title={product.title} desc={product.description} image={product.image} price={product.price} />
         ))}
-      </div>
+      </Box>
     </div>
   );
 }
