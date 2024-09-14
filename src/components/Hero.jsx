@@ -77,6 +77,8 @@ export default function Hero() {
         justifyContent="space-around"
         alignItems="center"
         gap="30px"
+        position="relative"
+        z-index="1"
       >
         <Input
           id="text"
@@ -90,15 +92,16 @@ export default function Hero() {
           backgroundColor='white'
           _hover={{ borderColor: 'teal.400' }}
           _focus={{ borderColor: 'teal.400' }}
+          z-index="1"
         />
-        <Select value={currentCategory} onChange={handleCategoryChange} backgroundColor='white'>
+        <Select width='25%' value={currentCategory} onChange={handleCategoryChange} backgroundColor='white'>
           <option value="category">Category</option>
           <option value="electronics">Electronics</option>
           <option value="jewelery">Jewelery</option>
           <option value="men's clothing">Men&apos;s Clothing</option>
           <option value="women's clothing">Women&apos;s Clothing</option>
         </Select>
-        <Slider onChange={handlePriceChange} defaultValue={currentPrice} min={0} max={1000}>
+        <Slider width='25%' onChange={handlePriceChange} defaultValue={currentPrice} min={0} max={1000}>
           <SliderTrack>
             <SliderFilledTrack bg='tomato' />
           </SliderTrack>

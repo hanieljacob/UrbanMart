@@ -1,8 +1,10 @@
 import {Flex, List, ListItem, Link, Image } from '@chakra-ui/react';
+import urbanmart from '../images/urbanmart.png';
 
 export default function Navbar() {
   return (
     <Flex
+      overflow='hidden'
       as="nav"
       align="center"
       justify="space-between"
@@ -11,14 +13,15 @@ export default function Navbar() {
       position="sticky"
       top="0"
       width="100%"
-      z-index="10"
+      zIndex={100}
     >
       <Image
-          // src="path/to/your/logo.png"
-          // alt="Logo"
-          // height="50px"
-          // width="80px"
-          // paddingLeft="20px"
+          src={urbanmart}
+          alt="Logo"
+          height="50px"
+          width="90px"
+          paddingLeft="20px"
+          paddingBottom="10px"
       />
       <Flex
         id="nav-items"

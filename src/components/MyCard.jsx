@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Text } from '@chakra-ui/react';
 import { Card, CardBody, CardFooter } from '@chakra-ui/react';
-import { Image, Stack, Heading, Divider, ButtonGroup, Button, Box } from '@chakra-ui/react';
+import { Image, Flex, Stack, Heading, Divider, ButtonGroup, Button, Box } from '@chakra-ui/react';
 
 export default function MyCard({title, desc, image, price}) {
   return (
@@ -20,20 +20,22 @@ export default function MyCard({title, desc, image, price}) {
           <Text>
             {desc.slice(0,300)}
           </Text> 
-          <Text color='blue.600' fontSize='2xl'>
-            {price}
-          </Text>
         </Stack>
       </CardBody>
+      <Text paddingBottom="10px" textAlign='center' color='blue.600' fontSize='2xl'>
+          {`$${price}`}
+      </Text>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing='2'>
-          <Button variant='solid' colorScheme='blue'>
-            Buy now
-          </Button>
-          <Button variant='ghost' colorScheme='blue'>
-            Add to cart
-          </Button>
+        <ButtonGroup zIndex='1' width='100%'spacing='2'>
+          <Flex width='100%' justifyContent='center' textAlign='center'>
+            <Button marginRight='5px' variant='solid' colorScheme='blue'>
+              Buy now
+            </Button>
+            <Button variant='ghost' colorScheme='blue'>
+              Add to cart
+            </Button>
+          </Flex>
         </ButtonGroup>
       </CardFooter>
     </Card>
