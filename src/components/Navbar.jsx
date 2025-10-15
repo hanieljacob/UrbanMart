@@ -29,13 +29,13 @@ export default function Navbar() {
       >
         <List display="flex" gap="30px" paddingRight="50px">
           <ListItem>
-            <Link color="white" href="#">Home</Link>
+            <Link color="white" href="/">Home</Link>
           </ListItem>
           <ListItem>
-            <Link color="white" href="#">About</Link>
+            <Link color="white" href="/About">About</Link>
           </ListItem>
           <ListItem>
-            <Link color="white" href="#">Cart</Link>
+            <Link color="white" href="/">Cart</Link>
           </ListItem>
         </List>
       </Flex>
